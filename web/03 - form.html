@@ -5,11 +5,20 @@
     form.html - Cross Origin Request using Form
   </h1>
 
+  <h2>GET</h2>
+  <form action="http://localhost:8000/submit" method="get">
+    <input type="text" name="name" value="user">
+    <input type="text" name="email" value="user@example.com">
+    <input type="submit" value="Submit">
+  </form>
+
+  <h2>POST</h2>
   <form action="http://localhost:8000/submit" method="post">
     <input type="text" name="name" value="user">
     <input type="text" name="email" value="user@example.com">
     <input type="submit" value="Submit">
   </form>
+
   Auto-submit in 10 seconds
   <script>
     // submit the form on page load
