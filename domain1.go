@@ -17,7 +17,7 @@ var token = time.Now().Format("2006-01-02_15:04:05.000000000")
 func main() {
 	http.HandleFunc("/", handler)
 	log.Println("Starting server with token: " + token)
-	log.Fatal(http.ListenAndServe("localhost:8000", nil))
+	log.Fatal(http.ListenAndServeTLS("localhost:8000", "localhost.crt", "localhost.key", nil))
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -25,17 +25,23 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	for k, v := range r.Header {
 		// fmt.Printf("Header field %q, Value %q\n", k, v)
 		if k == "Cookie" {
-			fmt.Println(strings.Join(v, ""))
 			hasCookie = strings.Contains(strings.Join(v, ""), "sessionid="+token)
 		}
 	}
 
-	fmt.Printf("Got request - %s %s %s hasCookie=%v\n", r.Method, r.URL, r.Proto, hasCookie)
+	fmt.Printf("%s %s hasCookie=%v\n", r.Method, r.URL, hasCookie)
 
 	w.Header().Add("Content-Type", "text/html")
-	w.Header().Add("Set-Cookie", "sessionid="+token+"; path=/; httponly")
+	w.Header().Add("Set-Cookie", "sessionid="+token+"; path=/; httponly; secure; SameSite=strict")
 	if enableCORS {
 		w.Header().Add("Access-Control-Allow-Origin", "*")
 	}
-	fmt.Fprintf(w, "Got request - %s %s %s hasCookie=%v\n", r.Method, r.URL, r.Proto, hasCookie)
+
+	message := fmt.Sprintf("%s %s hasCookie=%v\n", r.Method, r.URL, hasCookie)
+	fmt.Fprint(w, getPage(message))
+}
+
+func getPage(message string) string {
+	m := `<!DOCTYPE html><link rel="icon" href="data:;base64,iVBORw0KGgo="><h2>Domain1 (Victim)</h2><pre>` + message + `</pre>`
+	return m
 }

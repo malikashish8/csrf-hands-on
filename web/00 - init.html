@@ -1,11 +1,14 @@
 <!DOCTYPE html>
+
 <body>
-  Open victim page in new tab to initialize cookie to mock the session <br/>
+  Open victim page in new tab to initialize cookie to mock the session <br />
   Redirecting you back to the home page in 5 seconds...
   <script>
-    window.open("http://localhost:8000/init", "_blank").focus();
+    window.onload = function () {
+      window.open("https://localhost:8000/init", "_blank").focus();
+    }
     setTimeout(() => {
-      window.location = "http://localhost:8001";
+      window.location = "https://localhost:8001";
     }, 5000);
   </script>
 </body>

@@ -1,6 +1,6 @@
 # CSRF Hand-on
 
-Learn CSRF practically
+Learn CSRF practically through various use cases. Use cases are listed in [web](/web/) folder.
 
 ## Run
 
@@ -11,7 +11,7 @@ Learn CSRF practically
 - in 2nd run
   
   ```go run domain2.go```
-- open in browser <http://localhost:8001>
+- open <https://localhost:8001> in a private/incognito browser window
 
 ## Prerequisites
 

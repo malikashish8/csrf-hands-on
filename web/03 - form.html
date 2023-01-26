@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 
 <body>
-  <h1>
+  <h2>
     form.html - Cross Origin Request using Form
-  </h1>
+  </h2>
+  <ul>
+    <li>Form request goes through regardless of this being cross-origin</li>
+    <li>The form is submitted with session cookies even if they are <i>same-origin strict</i>.</li>
+    <li>But there is no way to set custom headers in a form submit in this manner.</li>
+  </ul>
 
-  <h2>GET</h2>
-  <form action="http://localhost:8000/submit" method="get">
+  <h3>GET</h3>
+  <form action="https://localhost:8000/submit" method="get">
     <input type="text" name="name" value="user">
     <input type="text" name="email" value="user@example.com">
     <input type="submit" value="Submit">
   </form>
 
-  <h2>POST</h2>
-  <form action="http://localhost:8000/submit" method="post">
+  <h3>POST</h3>
+  <form action="https://localhost:8000/submit" method="post">
     <input type="text" name="name" value="user">
     <input type="text" name="email" value="user@example.com">
     <input type="submit" value="Submit">
   </form>
 
-  Auto-submit in 10 seconds
+  Auto-submitting GET request in 20 seconds...
   <script>
     // submit the form on page load
     window.onload = function () {
       setTimeout(() => {
         document.forms[0].submit();
-      }, 10000);
+      }, 20000);
     }
   </script>
 
-<body
+</body>

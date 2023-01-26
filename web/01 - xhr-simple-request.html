@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 
 <body>
-  <h1>
-    xhr.html - Cross Origin Request using XMLHttpRequest (XHR)
-  </h1>
+  <h2>
+    Cross Origin Request using simple XMLHttpRequest (XHR)
+  </h2>
+  <ul>
+    <li>The request is actually sent to the server without any credentials (cookies).</li>
+    <li>It looks like the request has failed on the client side but it has actually gone through.</li>
+    <li>It can seen in the server logs.</li>
+  </ul>
 
-  <div id="status">Here here!</div>
+  <pre id="status">Here here!</pre>
   <script>
-    document.getElementById("status").innerText="testing...";    
-    
+    document.getElementById("status").innerText = "testing...";
+
     // send cross origin request to localhost:8000
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8000/api", true);
+    xhr.open("POST", "https://localhost:8000/api", true);
     xhr.onload = function () {
       document.getElementById("status").innerText = xhr.responseText;
     };
     xhr.onerror = function () {
-      document.getElementById("status").innerText = "Request failed";
+      document.getElementById("status").innerText = "XHR Error";
     };
     xhr.send();
   </script>
