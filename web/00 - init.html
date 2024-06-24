@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 
 <body>
+  <h1>Attacker Domain (port 8001)</h1>
   Open victim page in new tab to initialize cookie to mock the session <br />
   Redirecting you back to the home page in 5 seconds...
   <script>
     window.onload = function () {
       window.open("https://localhost:8000/init", "_blank").focus();
-    }
+    };
     setTimeout(() => {
       window.location = "https://localhost:8001";
     }, 5000);

@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 
 <body>
-  <h2>
-    Cross Origin Request using Form
-  </h2>
+  <h1>Attacker Domain (port 8001)</h1>
+  <h2>Cross Origin Request using Form</h2>
   <ul>
     <li>Form request goes through regardless of this being cross-origin</li>
-    <li>The form is submitted with session cookies even if they are <i>same-origin strict</i>.</li>
-    <li>But there is no way to set custom headers in a form submit in this manner.</li>
+    <li>
+      The form is submitted with session cookies even if they are
+      <i>same-origin strict</i>.
+    </li>
+    <li>
+      But there is no way to set custom headers in a form submited in this
+      manner.
+    </li>
   </ul>
 
   <h3>GET</h3>
   <form action="https://localhost:8000/submit" method="get">
-    <input type="text" name="name" value="user">
-    <input type="text" name="email" value="user@example.com">
-    <input type="submit" value="Submit">
+    <input type="text" name="name" value="user" />
+    <input type="text" name="email" value="user@example.com" />
+    <input type="submit" value="Submit" />
   </form>
 
   <h3>POST</h3>
   <form action="https://localhost:8000/submit" method="post">
-    <input type="text" name="name" value="user">
-    <input type="text" name="email" value="user@example.com">
-    <input type="submit" value="Submit">
+    <input type="text" name="name" value="user" />
+    <input type="text" name="email" value="user@example.com" />
+    <input type="submit" value="Submit" />
   </form>
 
   Auto-submitting GET request in 20 seconds...
@@ -31,7 +36,6 @@
       setTimeout(() => {
         document.forms[0].submit();
       }, 20000);
-    }
+    };
   </script>
-
 </body>

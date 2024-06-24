@@ -22,10 +22,10 @@ func main() {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	var hasCookie bool
-	for k, v := range r.Header {
-		// fmt.Printf("Header field %q, Value %q\n", k, v)
+	for k, value := range r.Header {
+		// fmt.Printf("Header field %q, Value %q\n", k, value)
 		if k == "Cookie" {
-			hasCookie = strings.Contains(strings.Join(v, ""), "sessionid="+token)
+			hasCookie = strings.Contains(strings.Join(value, ""), "sessionid="+token)
 		}
 	}
 
@@ -42,6 +42,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getPage(message string) string {
-	m := `<!DOCTYPE html><link rel="icon" href="data:;base64,iVBORw0KGgo="><h2>Domain1 (Victim)</h2><pre>` + message + `</pre>`
+	m := `<!DOCTYPE html><link rel="icon" href="data:;base64,iVBORw0KGgo="><h1>Victim Domain (port 8000)</h1><pre>` + message + `</pre>`
 	return m
 }
